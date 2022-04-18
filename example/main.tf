@@ -6,24 +6,7 @@
    }
 }
 
-
-// terraform {
-//   required_providers {
-//     azurerm = {
-//       source  = "hashicorp/azurerm"
-//       version = ">=3.0.0"
-//     }
-//   }
-// }
-
-// # Configure the Microsoft Azure Provider
-// provider "azurerm" {
-//   features {}
-// }
-
-
 module "res_group" {
-  // source                  = "git::git@gitlab.com:ot-azure/terraform/rg.git?ref=v1.1.0"
   source                  = "OT-terraform-azure-modules/resource-group/azure"
   version                 = "0.0.1"
   resource_group_name     = "test-demo01"
@@ -35,7 +18,6 @@ module "res_group" {
 }
 }
 module "vnet" {
-  // source                      = "git::git@gitlab.com:ot-azure/terraform/virtual_network.git?ref=v1.1.0"
   source                      = "OT-terraform-azure-modules/virtual-network/azure"
   version                     = "0.0.2"
   resource_group_name         = module.res_group.resource_group_name
@@ -51,7 +33,6 @@ Env = "dev"
 }
 
 module "subnet_module" {
-  // source                  = "git::git@gitlab.com:ot-azure/terraform/subnet.git?ref=kritarth"
   source                  = "OT-terraform-azure-modules/subnet/azure"
   version                 = "0.0.2"
   resource_group_name     = module.res_group.resource_group_name
