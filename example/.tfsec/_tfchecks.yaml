@@ -21,7 +21,7 @@ checks:
       - module
     requiredLabels:
       - res_group
-    severity: HIGH
+    severity: CRITICAL
     matchSpec:
       name: tag_map
       action: contains
