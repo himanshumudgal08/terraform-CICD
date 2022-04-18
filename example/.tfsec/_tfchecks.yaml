@@ -1,0 +1,169 @@
+---
+checks:
+  - code: CUS001
+    description: Custom check to ensure the Name tag is applied to Resources Group Module 
+    impact:  By not having Name Tag we can't keep track of our Resources
+    requiredTypes:
+      - module
+    requiredLabels:
+      - res_group
+    severity: MEDIUM
+    matchSpec:
+     name: tag_map
+     action: contains
+     value: Name
+    errorMessage: The required Name tag was missing
+
+  - code: CUS002
+    description: Custom check to ensure the Name tag is applied to Resources Group Module
+    impact:  By not having Name Tag we can't keep track of our Resources
+    requiredTypes:
+      - module
+    requiredLabels:
+      - res_group
+    severity: MEDIUM
+    matchSpec:
+      name: tag_map
+      action: contains
+      value: Env
+    errorMessage: The required Name tag was missing
+
+  - code: CUS003
+    description: Custom check to ensure Resource Group is going to be created in Australia East region
+    impact:  By not having our resource in Australia East we might get some latency
+    requiredTypes:
+      - module
+    requiredLabels:
+      - res_group
+    severity: MEDIUM
+    matchSpec:
+     name: resource_group_location
+     action: equals
+     value: "Australia East"
+    errorMessage: The required "Australia East" location was missing
+
+  - code: CUS004
+    description: Custom check to ensure that prefix applied to All the Resource groups
+    impact:  By not having Prefix we can't keep track of our Resources
+    requiredTypes:
+      - module
+    requiredLabels:
+      - res_group
+    severity: MEDIUM
+    matchSpec:
+      name: resource_group_name
+      action: startsWith
+      value: test
+    errorMessage: The required prefix "test" was missing
+
+  - code: CUS005
+    description: Custom check to ensure that prefix applied to All the Virtual Networks
+    impact:  By not having Prefix we can't keep track of our Virtual Networks
+    requiredTypes:
+      - module
+    requiredLabels:
+      - vnet
+    severity: MEDIUM
+    matchSpec:
+      name: vnet_name
+      action: startsWith
+      value: test
+    errorMessage:  The required prefix "test" was missing
+
+  - code: CUS006
+    description: Custom check to ensure that Address Space is within our Network
+    impact:  By not having Address Space within our Network our security might get compromised
+    requiredTypes:
+      - module
+    requiredLabels:
+      - vnet
+    severity: CRITICAL
+    matchSpec:
+     name: address_space
+     action: contains
+     value: 10.0.0.0/16
+    errorMessage: The required Address Space ["10.0.0.0/16"] was missing
+
+  - code: CUS007
+    description: Custom check to ensure the Name tag is applied to Virtual Network Module
+    impact:  By not having Name Tag we can't keep track of our Virtual Network
+    requiredTypes:
+      - module
+    requiredLabels:
+      - vnet
+    severity: MEDIUM
+    matchSpec:
+     name: tag_map
+     action: contains
+     value: Name
+    errorMessage: The required Name tag was missing
+
+  - code: CUS008
+    description: Custom check to ensure the Env tag is applied to Virtual Network Module
+    impact:  By not having Name Tag we can't keep track of our Virtual Network Module
+    requiredTypes:
+      - module
+    requiredLabels:
+      - vnet
+    severity: MEDIUM
+    matchSpec:
+      name: tag_map
+      action: contains
+      value: Env
+    errorMessage: The required Env tag was missing
+
+  - code: CUS009
+    description: Custom check to ensure that Address Space is within our Network
+    impact:  By not having Address Space within our Network our security might get compromised
+    requiredTypes:
+      - module
+    requiredLabels:
+      - subnet_module
+    severity: CRITICAL
+    matchSpec:
+     name: subnet_address_prefixes
+     action: contains
+     value: 10.0.0.0/24
+    errorMessage: The required Address Space ["10.0.0.0/24"] was missing
+
+  - code: CUS010
+    description: Custom check to ensure Virtual Machine is going to be created in Australia East region
+    impact:  By not having our resource in Australia East we might get some latency
+    requiredTypes:
+      - module
+    requiredLabels:
+      - vm_module
+    severity: CRITICAL
+    matchSpec:
+     name: location
+     action: equals
+     value: "Australia East"
+    errorMessage: The required "Australia East" location was missing
+
+  - code: CUS011
+    description: Custom check to ensure that prefix applied to All the Virtual Machines
+    impact:  By not having Prefix we can't keep track of our Virtual Machines
+    requiredTypes:
+      - module
+    requiredLabels:
+      - vm_module
+    severity: CRITICAL
+    matchSpec:
+     name: name
+     action: startsWith
+     value: test
+    errorMessage:  The required prefix "test" was missing
+
+  - code: CUS012
+    description: Custom check to ensure the Virtual Machine's size is Standard_E2s_v3
+    impact:  UsingStandard_E2s_v3 is more efficient & cheaper
+    requiredTypes:
+      - module
+    requiredLabels:
+      - vm_module
+    severity: CRITICAL
+    matchSpec:
+     name: vm_size
+     action: equals
+     value: Standard_E2s_v3
+    errorMessage: The required VM size Standard_E2s_v3 was missing
