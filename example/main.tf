@@ -9,12 +9,12 @@
 module "res_group" {
   source                  = "OT-terraform-azure-modules/resource-group/azure"
   version                 = "0.0.1"
-  resource_group_name     = "demodemo01"
+  resource_group_name     = "test-demo01"
   resource_group_location = var.location
   lock_level_value        = ""
   tag_map = {
-   Test = "Demo-rg"
-   Non = "dev"
+   Name = "Demo-rg"
+   Env = "dev"
 }
 }
 module "vnet" {
