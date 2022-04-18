@@ -48,7 +48,6 @@ module "nsg_Module" {
   resource_group_name   = module.res_group.resource_group_name
   location              = module.res_group.resource_group_location # Optional; if not provided, will use Resource Group location
   security_group_name   = "nsg-01"
-  src_address_prefix = ["10.0.1.0/24"]
   predefined_rules = [
     {
       name     = "SSH"
@@ -86,7 +85,7 @@ module "nsg_Module" {
     },
   ]
 
-  tag_map = {
+  tag_maps = {
     environment = "dev"
   }
 }
