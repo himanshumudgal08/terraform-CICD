@@ -14,7 +14,7 @@ module "res_group" {
   lock_level_value        = ""
   tag_map = {
    Name = "Demo-rg"
-   Test = "dev"
+   Env = "dev"
 }
 }
 module "vnet" {
