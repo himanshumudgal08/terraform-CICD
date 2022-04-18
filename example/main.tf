@@ -1,18 +1,15 @@
- provider "azurerm" {
-   features {
-     resource_group {
-       prevent_deletion_if_contains_resources = false
-     }
-   }
-}
-
 terraform {
   required_providers {
-    mycloud = {
-      source  = "mycorp/mycloud"
-      version = "~> 1.0"
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "=3.0.0"
     }
   }
+}
+
+# Configure the Microsoft Azure Provider
+provider "azurerm" {
+  features {}
 }
 
 
