@@ -6,6 +6,15 @@
    }
 }
 
+terraform {
+  required_providers {
+    mycloud = {
+      source  = "mycorp/mycloud"
+      version = "~> 1.0"
+    }
+  }
+}
+
 
 module "res_group" {
   source                  = "OT-terraform-azure-modules/resource-group/azure"
