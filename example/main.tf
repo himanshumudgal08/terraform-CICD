@@ -85,7 +85,7 @@ module "nsg_Module" {
     },
   ]
 
-  tag_maps = {
+  tags = {
     environment = "dev"
   }
 }
