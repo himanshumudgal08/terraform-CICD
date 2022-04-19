@@ -1,7 +1,7 @@
 /*-------------------- Variable values for Resource Group ---------------------------------------*/
 
-resource_group_name     = "rg-investco"
-resource_group_location = "East US"
+resource_group_name     = "rg-investcorp"
+resource_group_location = "Australia East"
 rg_tags = {
   Name        = "rg-investcorp",
   Environment = "staging",
