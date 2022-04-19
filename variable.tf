@@ -104,20 +104,3 @@ variable "availability_zones" {
   type        = any
   description = "(Optional) A list of a single item of the Availability Zone which the Virtual Machine should be allocated in."
 }
-
-# /*-------------------------------- Variables for NSG --------------------------------------------*/
-
-variable "security_group_name" {
-  description = "Network security group name"
-  type        = list(string)
-}
-
-variable "src_address_prefix" {
-  type        = list(string)
-  description = "source address prefix to be applied to all predefined rules.list(string) only allowed one element (CIDR, `*`, source IP range or Tags). Example [\"10.0.3.0/24\"] or [\"VirtualNetwork\"]"
-}
-
-variable "custom_rules" {
-  description = "Security rules for the network security group using this format name = [priority, direction, access, protocol, source_port_range, destination_port_range, src_address_prefix, destination_address_prefix, description]"
-  type        = any
-}
