@@ -1,6 +1,6 @@
 module "resource_group" {
   source                  = "OT-terraform-azure-modules/resource-group/azure"
-  version = "0.0.1"
+  version                 = "0.0.1"
   resource_group_name     = var.resource_group_name
   resource_group_location = var.resource_group_location
   tag_map                 = var.rg_tags
@@ -9,7 +9,7 @@ module "resource_group" {
 
 module "vnet" {
   source                      = "OT-terraform-azure-modules/virtual-network/azure"
-  version = "0.0.2"
+  version                     = "0.0.2"
   vnet_name                   = var.vnet_name
   resource_group_location     = module.resource_group.resource_group_location
   resource_group_name         = module.resource_group.resource_group_name
@@ -53,20 +53,21 @@ module "vm" {
   }
   storage_image_reference = var.storage_image_reference
   storage_os_disk = {
-    name              = var.vm_name[count.index]
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    os_type           = "Linux"
+    name          = var.vm_name[count.index]
+    caching       = "ReadWrite"
+    create_option = "FromImage"
+    os_type       = "Linux"
   }
   os_profile = var.os_profile
   tagMap = {
     Name = var.vm_name[count.index]
   }
-  depends_on          = [tls_private_key.vm_key]
+  depends_on = [tls_private_key.vm_key]
 }
 
 module "nsg" {
   source              = "OT-terraform-azure-modules/network-security-group/azure"
+  version             = "0.0.1"
   count               = length(var.availability_zones)
   resource_group_name = module.resource_group.resource_group_name
   location            = var.vm_location
