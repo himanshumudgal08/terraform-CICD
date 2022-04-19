@@ -44,21 +44,22 @@ module "subnet_module" {
 }
 
 module "nsg_Module" {
-  source  = "Azure/network-security-group/azurerm"
+  source  = "OT-terraform-azure-modules/network-security-group/azure"
+  version = "0.0.1"
   resource_group_name   = module.res_group.resource_group_name
   location              = module.res_group.resource_group_location # Optional; if not provided, will use Resource Group location
   security_group_name   = "nsg-01"
   predefined_rules = [
-    {
-      name     = "SSH"
-      priority = "100"
+  //   {
+  //     name     = "SSH"
+  //     priority = "100"
 
-    },
-    {
-      name              = "HTTP"
-      priority          = "101"
-    }
-  ]
+  //   },
+  //   {
+  //     name              = "HTTP"
+  //     priority          = "101"
+  //   }
+  // ]
 
   custom_rules = [
     {
