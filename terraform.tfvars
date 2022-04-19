@@ -33,7 +33,7 @@ vm_size                          = "Standard_E2s_v3"
 vm_location                      = "Australia East"
 delete_os_disk_on_termination    = true
 delete_data_disks_on_termination = true
-availability_zones = [["1"]]
+availability_zones               = [["1"]]
 
 storage_image_reference = {
   publisher = "Canonical"
