@@ -50,16 +50,16 @@ module "nsg_Module" {
   location              = module.res_group.resource_group_location # Optional; if not provided, will use Resource Group location
   security_group_name   = "nsg-01"
   predefined_rules = [
-  //   {
-  //     name     = "SSH"
-  //     priority = "100"
+    {
+      name     = "SSH"
+      priority = "100"
 
-  //   },
-  //   {
-  //     name              = "HTTP"
-  //     priority          = "101"
-  //   }
-  // ]
+    },
+    {
+      name              = "HTTP"
+      priority          = "101"
+    }
+  ]
 
   custom_rules = [
     {
