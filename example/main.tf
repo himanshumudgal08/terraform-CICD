@@ -43,6 +43,54 @@ module "subnet_module" {
   service_endpoints       = ["Microsoft.AzureActiveDirectory"]
 }
 
+module "nsg_Module" {
+  source  = "OT-terraform-azure-modules/network-security-group/azure"
+  version = "0.0.1"
+  resource_group_name   = module.res_group.resource_group_name
+  location              = module.res_group.resource_group_location # Optional; if not provided, will use Resource Group location
+  security_group_name   = "nsg-01"
+  // predefined_rules = [
+  //   {
+  //     name     = "SSH"
+  //     priority = "100"
+
+  //   },
+  //   {
+  //     name              = "HTTP"
+  //     priority          = "101"
+  //   }
+  // ]
+
+  custom_rules = [
+    {
+      name                   = "ubuntuSSH"
+      priority               = 201
+      direction              = "Inbound"
+      access                 = "Allow"
+      protocol               = "Tcp"
+      source_port_range      = "*"
+      destination_port_range = "22"
+      src_address_prefix  = "10.151.0.0/24"
+      description            = "ssh to ubuntu machine"
+    },
+    {
+      name                    = "myhttp"
+      priority                = 200
+      direction               = "Inbound"
+      access                  = "Allow"
+      protocol                = "Tcp"
+      source_port_range       = "*"
+      destination_port_range  = "8080"
+      src_address_prefixes = ["10.151.0.0/24", "10.151.1.0/24"]
+      description             = "description-http"
+    },
+  ]
+
+  // tags = {
+  //   environment = "dev"
+  // }
+}
+
 
 
 module "vm_module" {
