@@ -65,24 +65,3 @@ module "vm" {
   depends_on = [tls_private_key.vm_key]
 }
 
-module "nsg" {
-  source              = "OT-terraform-azure-modules/network-security-group/azure"
-  version             = "0.0.1"
-  count               = length(var.availability_zones)
-  resource_group_name = module.resource_group.resource_group_name
-  location            = var.vm_location
-  security_group_name = var.security_group_name[count.index]
-  src_address_prefix  = var.src_address_prefix
-  custom_rules        = var.custom_rules
-  depends_on          = [module.vm]
-  tag_map = {
-    Name = var.security_group_name[count.index]
-  }
-}
-
-resource "azurerm_network_interface_security_group_association" "vm_nsg_association" {
-  count                     = length(var.availability_zones)
-  network_interface_id      = module.vm.*.nic_id[count.index]
-  network_security_group_id = module.nsg.*.nsg_id[count.index]
-  depends_on                = [module.nsg]
-}
