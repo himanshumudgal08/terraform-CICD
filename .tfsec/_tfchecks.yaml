@@ -9,24 +9,24 @@ checks:
       - resource_group
     severity: MEDIUM
     matchSpec:
-     name: rg_tags
+     name: tag_map
      action: contains
      value: Name
     errorMessage: The required Name tag was missing
 
   - code: CUS002
     description: Custom check to ensure the Name tag is applied to Resources Group Module
-    impact:  By not having Name Tag we can't keep track of our Resources
+    impact:  By not having Environment Tag we can't keep track of our Resources
     requiredTypes:
       - module
     requiredLabels:
       - resource_group
     severity: CRITICAL
     matchSpec:
-      name: rg_tags
+      name: tag_map
       action: contains
       value: Environment
-    errorMessage: The required Name tag was missing
+    errorMessage: The required Environment tag was missing
 
   - code: CUS003
     description: Custom check to ensure Resource Group is going to be created in Australia East region
@@ -43,8 +43,8 @@ checks:
     errorMessage: The required "Australia East" location was missing
 
   - code: CUS004
-    description: Custom check to ensure that prefix applied to All the Resource groups
-    impact:  By not having Prefix we can't keep track of our Resources
+    description: Custom check to ensure that suffix applied to All the Resource groups
+    impact:  By not having suffix we can't keep track of our Resources
     requiredTypes:
       - module
     requiredLabels:
@@ -54,11 +54,11 @@ checks:
       name: resource_group_name
       action: endsWith
       value: investcorp
-    errorMessage: The required prefix "test" was missing
+    errorMessage: The required suffix "investcorp" was missing
 
   - code: CUS005
-    description: Custom check to ensure that prefix applied to All the Virtual Networks
-    impact:  By not having Prefix we can't keep track of our Virtual Networks
+    description: Custom check to ensure that suffix applied to All the Virtual Networks
+    impact:  By not having suffix we can't keep track of our Virtual Networks
     requiredTypes:
       - module
     requiredLabels:
@@ -68,7 +68,7 @@ checks:
       name: vnet_name
       action: endsWith
       value: investcorp
-    errorMessage:  The required prefix "test" was missing
+    errorMessage:  The required suffix "investcorp" was missing
 
   - code: CUS006
     description: Custom check to ensure that Address Space is within our Network
@@ -93,24 +93,24 @@ checks:
       - vnet
     severity: MEDIUM
     matchSpec:
-     name: vnet_tags
+     name: tag_map
      action: contains
      value: Name
     errorMessage: The required Name tag was missing
 
   - code: CUS008
     description: Custom check to ensure the Env tag is applied to Virtual Network Module
-    impact:  By not having Name Tag we can't keep track of our Virtual Network Module
+    impact:  By not having Environment Tag we can't keep track of our Virtual Network Module
     requiredTypes:
       - module
     requiredLabels:
       - vnet
     severity: MEDIUM
     matchSpec:
-      name: vnet_tags
+      name: tag_map
       action: contains
       value: Environment
-    errorMessage: The required Env tag was missing
+    errorMessage: The required Environment tag was missing
 
   - code: CUS009
     description: Custom check to ensure that Address Space is within our Network
@@ -141,8 +141,8 @@ checks:
     errorMessage: The required "Australia East" location was missing
 
   - code: CUS011
-    description: Custom check to ensure that prefix applied to All the Virtual Machines
-    impact:  By not having Prefix we can't keep track of our Virtual Machines
+    description: Custom check to ensure that suffix applied to All the Virtual Machines
+    impact:  By not having suffix we can't keep track of our Virtual Machines
     requiredTypes:
       - module
     requiredLabels:
@@ -152,7 +152,7 @@ checks:
      name: name
      action: startsWith
      value: investcorp
-    errorMessage:  The required prefix "test" was missing
+    errorMessage:  The required suffix "investcorp" was missing
 
   - code: CUS012
     description: Custom check to ensure the Virtual Machine's size is Standard_E2s_v3
