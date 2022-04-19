@@ -6,7 +6,7 @@ checks:
     requiredTypes:
       - module
     requiredLabels:
-      - res_group
+      - resource_group
     severity: MEDIUM
     matchSpec:
      name: tag_map
@@ -20,7 +20,7 @@ checks:
     requiredTypes:
       - module
     requiredLabels:
-      - res_group
+      - resource_group
     severity: CRITICAL
     matchSpec:
       name: tag_map
@@ -34,7 +34,7 @@ checks:
     requiredTypes:
       - module
     requiredLabels:
-      - res_group
+      - resource_group
     severity: MEDIUM
     matchSpec:
      name: resource_group_location
@@ -48,7 +48,7 @@ checks:
     requiredTypes:
       - module
     requiredLabels:
-      - res_group
+      - resource_group
     severity: MEDIUM
     matchSpec:
       name: resource_group_name
@@ -118,7 +118,7 @@ checks:
     requiredTypes:
       - module
     requiredLabels:
-      - subnet_module
+      - subnet
     severity: CRITICAL
     matchSpec:
      name: subnet_address_prefixes
@@ -132,7 +132,7 @@ checks:
     requiredTypes:
       - module
     requiredLabels:
-      - vm_module
+      - vm
     severity: CRITICAL
     matchSpec:
      name: location
@@ -146,7 +146,7 @@ checks:
     requiredTypes:
       - module
     requiredLabels:
-      - vm_module
+      - vm
     severity: CRITICAL
     matchSpec:
      name: name
@@ -160,7 +160,7 @@ checks:
     requiredTypes:
       - module
     requiredLabels:
-      - vm_module
+      - vm
     severity: CRITICAL
     matchSpec:
      name: vm_size
