@@ -1,5 +1,6 @@
 module "resource_group" {
   source                  = "OT-terraform-azure-modules/resource-group/azure"
+  version = "0.0.1"
   resource_group_name     = var.resource_group_name
   resource_group_location = var.resource_group_location
   tag_map                 = var.rg_tags
@@ -8,6 +9,7 @@ module "resource_group" {
 
 module "vnet" {
   source                      = "OT-terraform-azure-modules/virtual-network/azure"
+  version = "0.0.2"
   vnet_name                   = var.vnet_name
   resource_group_location     = module.resource_group.resource_group_location
   resource_group_name         = module.resource_group.resource_group_name
