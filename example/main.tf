@@ -86,9 +86,9 @@ module "nsg_Module" {
     },
   ]
 
-  tags = {
-    environment = "dev"
-  }
+  // tags = {
+  //   environment = "dev"
+  // }
 }
 
 
