@@ -48,21 +48,5 @@ os_profile = {
   admin_password = "Mehul@123"
 }
 
-# /*---------------------- variable values for NSG ------------------------------------------------*/
 
-security_group_name = ["linux-vm-1-nsg"]
-src_address_prefix  = ["10.0.1.0/24"]
-custom_rules = [
-  {
-    name                   = "mySSH"
-    priority               = 201
-    direction              = "Inbound"
-    access                 = "Allow"
-    protocol               = "Tcp"
-    source_port_range      = "*"
-    destination_port_range = "22"
-    src_address_prefix     = "VirtualNetwork"
-    description            = "ssh to ubuntu machine"
-  }
-]
 
