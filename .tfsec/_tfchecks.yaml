@@ -6,7 +6,7 @@ checks:
     requiredTypes:
       - module
     requiredLabels:
-      - res_group
+      - resource_group
     severity: MEDIUM
     matchSpec:
      name: tag_map
@@ -16,17 +16,17 @@ checks:
 
   - code: CUS002
     description: Custom check to ensure the Name tag is applied to Resources Group Module
-    impact:  By not having Name Tag we can't keep track of our Resources
+    impact:  By not having Environment Tag we can't keep track of our Resources
     requiredTypes:
       - module
     requiredLabels:
-      - res_group
+      - resource_group
     severity: CRITICAL
     matchSpec:
       name: tag_map
       action: contains
-      value: Env
-    errorMessage: The required Name tag was missing
+      value: Environment
+    errorMessage: The required Environment tag was missing
 
   - code: CUS003
     description: Custom check to ensure Resource Group is going to be created in Australia East region
@@ -34,7 +34,7 @@ checks:
     requiredTypes:
       - module
     requiredLabels:
-      - res_group
+      - resource_group
     severity: MEDIUM
     matchSpec:
      name: resource_group_location
@@ -43,22 +43,22 @@ checks:
     errorMessage: The required "Australia East" location was missing
 
   - code: CUS004
-    description: Custom check to ensure that prefix applied to All the Resource groups
-    impact:  By not having Prefix we can't keep track of our Resources
+    description: Custom check to ensure that suffix applied to All the Resource groups
+    impact:  By not having suffix we can't keep track of our Resources
     requiredTypes:
       - module
     requiredLabels:
-      - res_group
+      - resource_group
     severity: MEDIUM
     matchSpec:
       name: resource_group_name
-      action: startsWith
-      value: test
-    errorMessage: The required prefix "test" was missing
+      action: endsWith
+      value: investcorp
+    errorMessage: The required suffix "investcorp" was missing
 
   - code: CUS005
-    description: Custom check to ensure that prefix applied to All the Virtual Networks
-    impact:  By not having Prefix we can't keep track of our Virtual Networks
+    description: Custom check to ensure that suffix applied to All the Virtual Networks
+    impact:  By not having suffix we can't keep track of our Virtual Networks
     requiredTypes:
       - module
     requiredLabels:
@@ -66,9 +66,9 @@ checks:
     severity: MEDIUM
     matchSpec:
       name: vnet_name
-      action: startsWith
-      value: test
-    errorMessage:  The required prefix "test" was missing
+      action: endsWith
+      value: investcorp
+    errorMessage:  The required suffix "investcorp" was missing
 
   - code: CUS006
     description: Custom check to ensure that Address Space is within our Network
@@ -100,7 +100,7 @@ checks:
 
   - code: CUS008
     description: Custom check to ensure the Env tag is applied to Virtual Network Module
-    impact:  By not having Name Tag we can't keep track of our Virtual Network Module
+    impact:  By not having Environment Tag we can't keep track of our Virtual Network Module
     requiredTypes:
       - module
     requiredLabels:
@@ -109,8 +109,8 @@ checks:
     matchSpec:
       name: tag_map
       action: contains
-      value: Env
-    errorMessage: The required Env tag was missing
+      value: Environment
+    errorMessage: The required Environment tag was missing
 
   - code: CUS009
     description: Custom check to ensure that Address Space is within our Network
@@ -118,7 +118,7 @@ checks:
     requiredTypes:
       - module
     requiredLabels:
-      - subnet_module
+      - subnet
     severity: CRITICAL
     matchSpec:
      name: subnet_address_prefixes
@@ -132,7 +132,7 @@ checks:
     requiredTypes:
       - module
     requiredLabels:
-      - vm_module
+      - vm
     severity: CRITICAL
     matchSpec:
      name: location
@@ -141,29 +141,57 @@ checks:
     errorMessage: The required "Australia East" location was missing
 
   - code: CUS011
-    description: Custom check to ensure that prefix applied to All the Virtual Machines
-    impact:  By not having Prefix we can't keep track of our Virtual Machines
+    description: Custom check to ensure that suffix applied to All the Virtual Machines
+    impact:  By not having suffix we can't keep track of our Virtual Machines
     requiredTypes:
       - module
     requiredLabels:
-      - vm_module
+      - vm
     severity: CRITICAL
     matchSpec:
      name: name
      action: startsWith
-     value: test
-    errorMessage:  The required prefix "test" was missing
+     value: investcorp
+    errorMessage:  The required suffix "investcorp" was missing
 
   - code: CUS012
     description: Custom check to ensure the Virtual Machine's size is Standard_E2s_v3
-    impact:  UsingStandard_E2s_v3 is more efficient & cheaper
+    impact:  Using Standard_E2s_v3 is more efficient & cheaper
     requiredTypes:
       - module
     requiredLabels:
-      - vm_module
+      - vm
     severity: CRITICAL
     matchSpec:
      name: vm_size
      action: equals
      value: Standard_E2s_v3
     errorMessage: The required VM size Standard_E2s_v3 was missing
+
+  - code: CUS013
+    description: Custom check to ensure that os disk is deleting on termination
+    impact:  Not Deleting OS disk might impact our cost and Security
+    requiredTypes:
+      - module
+    requiredLabels:
+      - vm
+    severity: CRITICAL
+    matchSpec:
+     name: delete_os_disk_on_termination
+     action: equals
+     value: true
+    errorMessage: OS disk is not deleting on termination and not set as true
+
+  - code: CUS014
+    description: Custom check to ensure that data disks is deleting on termination
+    impact: Not Deleting Data disks might impact our cost and Security
+    requiredTypes:
+      - module
+    requiredLabels:
+      - vm
+    severity: CRITICAL
+    matchSpec:
+     name: delete_data_disks_on_termination
+     action: equals
+     value: true
+    errorMessage: The data disks is not deleting on termination and not set as true

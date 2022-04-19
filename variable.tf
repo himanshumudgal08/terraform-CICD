@@ -1,150 +1,123 @@
-variable "nic_ip_configuration_subnet_id" {
-  type = string
-  
-}
+/*---------------------- Variable for Resource Group --------------------------*/
 
-
-
-variable "nic_ip_configuration_private_ip_address_allocation" {
-  default = "Dynamic"
-}
-
-variable "name" {
-  type        = string
-  description = "(Required) Specifies the name of the Virtual Machine. Changing this forces a new resource to be created."
-}
 variable "resource_group_name" {
   type        = string
-  description = "(Required) Specifies the name of the Resource Group in which the Virtual Machine should exist. Changing this forces a new resource to be created."
+  description = "(Required) Name of Resource Group"
 }
-variable "location" {
+
+variable "resource_group_location" {
   type        = string
-  description = "(Required) Specifies the Azure Region where the Virtual Machine exists. Changing this forces a new resource to be created."
+  description = "(Required) Location where we want to implement code"
+}
+
+variable "rg_tags" {
+  type        = map(string)
+  description = "(Optional) Tags for Resource Group"
+}
+
+variable "lock_level_value" {
+  type        = string
+  default     = ""
+  description = "Specifies the Level to be used for this Lock. Possible values are `Empty (no lock)`, `CanNotDelete` and `ReadOnly`"
+}
+
+/*---------------------- Variable for Vnet ---------------------------------------*/
+
+variable "vnet_name" {
+  description = "(Required) The name of the virtual network. Changing this forces a new resource to be created."
+  type        = string
+}
+
+variable "address_space" {
+  description = "(Required) The address space that is used the virtual network. You can supply more than one address space."
+  type        = list(any)
+}
+
+variable "create_ddos_protection_plan" {
+  description = "(Required) Create an ddos plan - Default is false"
+  type        = bool
+}
+
+variable "dns_servers" {
+  description = "(Optional) List of IP addresses of DNS servers"
+  type        = list(string)
+}
+
+variable "vnet_tags" {
+  type        = map(string)
+  description = "(Optional) Tags for Resource Group"
+}
+
+# /*-------------------------- Variable for Subnet -------------------------------------------*/
+
+variable "subnet_address_prefixes" {
+  description = "The CIDR block for the vnet"
+  type        = list(string)
+}
+
+variable "subnet_name" {
+  description = "The variable for subnet name"
+  type        = list(string)
+}
+
+variable "subnet_service_endpoints" {
+  description = "The list of Service endpoints to associate with the subnet"
+  type        = list(string)
+}
+
+# /*---------------------------- Variables for Virtual Machine ----------------------------*/
+
+variable "vm_name" {
+  type        = list(string)
+  description = "(Required) Specifies the name of the Virtual Machine. Changing this forces a new resource to be created."
 }
 
 variable "vm_size" {
   type        = string
   description = "(Required) Specifies the size of the Virtual Machine"
 }
-variable "availability_set_id" {
-  type        = string
-  description = "(Optional) The ID of the Availability Set in which the Virtual Machine should exist. Changing this forces a new resource to be created."
-  default     = null
-}
-variable "delete_os_disk_on_termination" {
-  type        = bool
-  description = "(Optional) Should the OS Disk (either the Managed Disk / VHD Blob) be deleted when the Virtual Machine is destroyed? Defaults to false."
-  default     = false
-}
-variable "delete_data_disks_on_termination" {
-  type        = bool
-  description = "(Optional) Should the Data Disks (either the Managed Disks / VHD Blobs) be deleted when the Virtual Machine is destroyed? Defaults to false."
-  default     = true
-}
-variable "primary_network_interface_id" {
-  type        = string
-  description = "(Optional) The ID of the Network Interface (which must be attached to the Virtual Machine) which should be the Primary Network Interface for this Virtual Machine."
-  default     = null
-}
-variable "proximity_placement_group_id" {
-  type        = string
-  description = "(Optional) The ID of the Proximity Placement Group to which this Virtual Machine should be assigned. Changing this forces a new resource to be created"
-  default     = null
-}
-variable "license_type" {
-  type        = string
-  description = "(Optional) Specifies the BYOL Type for this Virtual Machine. This is only applicable to Windows Virtual Machines. Possible values are Windows_Client and Windows_Server"
-  default     = null
-}
-variable "tagMap" {
-  type        = map(string)
-  description = "(Optional) A mapping of tags to assign to the Virtual Machine."
-  default = {
 
-  }
-}
-variable "zones" {
-  type        = list(string)
-  description = "(Optional) A list of a single item of the Availability Zone which the Virtual Machine should be allocated in."
-  default = [
-
-  ]
-}
-variable "os_profile_linux_config" {
-  type        = any
-  description = "(Required, when a Linux machine) A os_profile_linux_config block."
-  default = {
-
-  }
-}
-variable "os_profile_windows_config" {
-  type        = any
-  description = "(Required, when a Windows machine) A os_profile_windows_config block."
-  default = {
-
-  }
-}
-variable "boot_diagnostics" {
-  type        = list(any)
-  description = "(Optional) A boot_diagnostics block"
-  default = [
-
-  ]
-}
-variable "additional_capabilities" {
-  type        = list(any)
-  description = "(Optional) A additional_capabilities block"
-  default = [
-
-  ]
-}
-variable "identity" {
-  type        = list(any)
-  description = "(Optional) A identity block"
-  default = [
-
-  ]
-}
-variable "os_profile" {
-  type        = any
-  description = "(Optional) An os_profile block. Required when create_option in the storage_os_disk block is set to FromImage"
-  default = {
-
-  }
-}
-variable "storage_os_disk" {
-  type        = any
-  description = "(Required) A storage_os_disk block."
-  default = {
-
-  }
-}
-variable "os_profile_secrets" {
-  type        = list(any)
-  description = "(Optional) One or more os_profile_secrets blocks"
-  default = [
-
-  ]
-}
-
-variable "plan" {
-  type        = list(any)
-  description = "(Optional) A plan block"
-  default = [
-
-  ]
-}
-variable "storage_data_disk" {
-  type        = list(any)
-  description = "(Optional) One or more storage_data_disk blocks"
-  default = [
-
-  ]
-}
 variable "storage_image_reference" {
   type        = any
   description = "(Optional) A storage_image_reference block"
-  default = {
+}
 
-  }
+variable "os_profile" {
+  type        = any
+  description = "(Optional) An os_profile block. Required when create_option in the storage_os_disk block is set to FromImage"
+}
+
+variable "vm_location" {
+  type        = string
+  description = "VM location"
+}
+
+variable "delete_os_disk_on_termination" {
+  type = bool
+}
+
+variable "delete_data_disks_on_termination" {
+  type = bool
+}
+
+variable "availability_zones" {
+  type        = any
+  description = "(Optional) A list of a single item of the Availability Zone which the Virtual Machine should be allocated in."
+}
+
+# /*-------------------------------- Variables for NSG --------------------------------------------*/
+
+variable "security_group_name" {
+  description = "Network security group name"
+  type        = list(string)
+}
+
+variable "src_address_prefix" {
+  type        = list(string)
+  description = "source address prefix to be applied to all predefined rules.list(string) only allowed one element (CIDR, `*`, source IP range or Tags). Example [\"10.0.3.0/24\"] or [\"VirtualNetwork\"]"
+}
+
+variable "custom_rules" {
+  description = "Security rules for the network security group using this format name = [priority, direction, access, protocol, source_port_range, destination_port_range, src_address_prefix, destination_address_prefix, description]"
+  type        = any
 }
