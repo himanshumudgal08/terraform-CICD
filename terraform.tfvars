@@ -72,7 +72,7 @@ custom_rules = [
     protocol               = "Tcp"
     source_port_range      = "*"
     destination_port_range = "8080"
-    src_address_prefixes   = "*"
+    src_address_prefixe   = "*"
     description            = "description-http"
   }
 ]
