@@ -15,7 +15,7 @@ module "vnet" {
   resource_group_name         = module.resource_group.resource_group_name
   address_space               = var.address_space
   tag_map                     = var.vnet_tags
-  create_ddos_protection_plan = var.create_ddos_protection_plan
+  // create_ddos_protection_plan = var.create_ddos_protection_plan
   dns_servers                 = var.dns_servers
 }
 
