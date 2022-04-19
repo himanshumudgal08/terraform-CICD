@@ -48,7 +48,7 @@ module "vm" {
     disable_password_authentication = true
     ssh_keys = {
       key_data = tls_private_key.vm_key.public_key_openssh
-      path     = "/home/himanshu/.ssh/authorized_keys"
+      path     = "/home/mehul/.ssh/authorized_keys"
     }
   }
   storage_image_reference = var.storage_image_reference
