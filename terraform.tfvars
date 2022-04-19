@@ -63,17 +63,6 @@ custom_rules = [
     destination_port_range = "22"
     src_address_prefix     = "VirtualNetwork"
     description            = "ssh to ubuntu machine"
-  },
-  {
-    name                   = "myHTTP"
-    priority               = 200
-    direction              = "Inbound"
-    access                 = "Allow"
-    protocol               = "Tcp"
-    source_port_range      = "*"
-    destination_port_range = "8080"
-    src_address_prefixes   = ["*"]
-    description            = "description-http"
   }
 ]
 
