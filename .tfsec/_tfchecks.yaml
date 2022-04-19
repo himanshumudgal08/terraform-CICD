@@ -9,7 +9,7 @@ checks:
       - resource_group
     severity: MEDIUM
     matchSpec:
-     name: tag_map
+     name: rg_tags
      action: contains
      value: Name
     errorMessage: The required Name tag was missing
@@ -23,9 +23,9 @@ checks:
       - resource_group
     severity: CRITICAL
     matchSpec:
-      name: tag_map
+      name: rg_tags
       action: contains
-      value: Env
+      value: Environment
     errorMessage: The required Name tag was missing
 
   - code: CUS003
@@ -52,8 +52,8 @@ checks:
     severity: MEDIUM
     matchSpec:
       name: resource_group_name
-      action: startsWith
-      value: test
+      action: endsWith
+      value: investcorp
     errorMessage: The required prefix "test" was missing
 
   - code: CUS005
@@ -66,8 +66,8 @@ checks:
     severity: MEDIUM
     matchSpec:
       name: vnet_name
-      action: startsWith
-      value: test
+      action: endsWith
+      value: investcorp
     errorMessage:  The required prefix "test" was missing
 
   - code: CUS006
@@ -93,7 +93,7 @@ checks:
       - vnet
     severity: MEDIUM
     matchSpec:
-     name: tag_map
+     name: vnet_tags
      action: contains
      value: Name
     errorMessage: The required Name tag was missing
@@ -107,9 +107,9 @@ checks:
       - vnet
     severity: MEDIUM
     matchSpec:
-      name: tag_map
+      name: vnet_tags
       action: contains
-      value: Env
+      value: Environment
     errorMessage: The required Env tag was missing
 
   - code: CUS009
@@ -151,12 +151,12 @@ checks:
     matchSpec:
      name: name
      action: startsWith
-     value: test
+     value: investcorp
     errorMessage:  The required prefix "test" was missing
 
   - code: CUS012
     description: Custom check to ensure the Virtual Machine's size is Standard_E2s_v3
-    impact:  UsingStandard_E2s_v3 is more efficient & cheaper
+    impact:  Using Standard_E2s_v3 is more efficient & cheaper
     requiredTypes:
       - module
     requiredLabels:
@@ -167,3 +167,31 @@ checks:
      action: equals
      value: Standard_E2s_v3
     errorMessage: The required VM size Standard_E2s_v3 was missing
+
+  - code: CUS013
+    description: Custom check to ensure that os disk is deleting on termination
+    impact:  Not Deleting OS disk might impact our cost and Security
+    requiredTypes:
+      - module
+    requiredLabels:
+      - vm
+    severity: CRITICAL
+    matchSpec:
+     name: delete_os_disk_on_termination
+     action: equals
+     value: true
+    errorMessage: OS disk is not deleting on termination and not set as true
+
+  - code: CUS014
+    description: Custom check to ensure that data disks is deleting on termination
+    impact: Not Deleting Data disks might impact our cost and Security
+    requiredTypes:
+      - module
+    requiredLabels:
+      - vm
+    severity: CRITICAL
+    matchSpec:
+     name: delete_data_disks_on_termination
+     action: equals
+     value: true
+    errorMessage: The data disks is not deleting on termination and not set as true
