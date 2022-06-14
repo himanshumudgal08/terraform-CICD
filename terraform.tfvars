@@ -29,7 +29,7 @@ subnet_service_endpoints = ["Microsoft.AzureActiveDirectory"]
 /*-------------------------------- Variable values for Virtual Machine -----------------*/
 
 vm_name                          = ["investcorp-linux-vm"]
-vm_size                          = "Standard_D2s_v3"
+vm_size                          = "Standard_DS3_v2"
 vm_location                      = "Australia East"
 delete_os_disk_on_termination    = true
 delete_data_disks_on_termination = true
