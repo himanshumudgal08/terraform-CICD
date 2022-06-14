@@ -29,7 +29,7 @@ subnet_service_endpoints = ["Microsoft.AzureActiveDirectory"]
 /*-------------------------------- Variable values for Virtual Machine -----------------*/
 
 vm_name                          = ["investcorp-linux-vm"]
-vm_size                          = "Standard_E2s_v3"
+vm_size                          = "Standard_DS3_v2"
 vm_location                      = "Australia East"
 delete_os_disk_on_termination    = true
 delete_data_disks_on_termination = true
@@ -38,7 +38,7 @@ availability_zones               = [["1"]]
 storage_image_reference = {
   publisher = "Canonical"
   offer     = "UbuntuServer"
-  sku       = "16.04-LTS"
+  sku       = "18.04-LTS"
   version   = "latest"
 }
 
