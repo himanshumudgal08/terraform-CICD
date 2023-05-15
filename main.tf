@@ -20,7 +20,7 @@ module "vnet" {
 }
 
 module "subnet" {
-  source                  = "git@gitlab.com:ot-azure/terraform/subnet.git?ref=kritarth"
+  source                  = "./modules/subnet"
   subnet_address_prefixes = var.subnet_address_prefixes
   subnet_name             = var.subnet_name
   resource_group_name     = module.resource_group.resource_group_name
@@ -34,7 +34,7 @@ resource "tls_private_key" "vm_key" {
 }
 
 module "vm" {
-  source                           = "git@gitlab.com:ot-azure/terraform/virtual_machine.git?ref=VM_1.0.0"
+  source                           = "./modules/virtual_machine"
   count                            = length(var.availability_zones)
   nic_ip_configuration_subnet_id   = module.subnet.subnet_id[count.index]
   name                             = var.vm_name[count.index]
@@ -48,7 +48,7 @@ module "vm" {
     disable_password_authentication = true
     ssh_keys = {
       key_data = tls_private_key.vm_key.public_key_openssh
-      path     = "/home/mehul/.ssh/authorized_keys"
+      path     = "/home/himanshu/.ssh/authorized_keys"
     }
   }
   storage_image_reference = var.storage_image_reference
