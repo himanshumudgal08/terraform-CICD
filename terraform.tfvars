@@ -1,6 +1,6 @@
 /*-------------------- Variable values for Resource Group ---------------------------------------*/
 
-resource_group_name     = "rg-investcorp"
+resource_group_name     = "rg-himanshuPoC"
 resource_group_location = "Australia East"
 rg_tags = {
   Name        = "rg-investcorp",
@@ -10,7 +10,7 @@ rg_tags = {
 
 /*-------------------- Variable values for Vnet ------------------------------------------------*/
 
-vnet_name                   = "vnet-investcorp"
+vnet_name                   = "vnet-himanshuPoC"
 address_space               = ["10.0.0.0/16"]
 create_ddos_protection_plan = false
 dns_servers                 = []
@@ -22,13 +22,13 @@ vnet_tags = {
 
 # /*--------------------- Variable values for Subnet ----------------------------------------*/
 
-subnet_name              = ["sub-pub-investcorp-1"]
+subnet_name              = ["sub-pub-himanshuPoC-1"]
 subnet_address_prefixes  = ["10.0.0.0/24"]
 subnet_service_endpoints = ["Microsoft.AzureActiveDirectory"]
 
 /*-------------------------------- Variable values for Virtual Machine -----------------*/
 
-vm_name                          = ["investcorp-linux-vm"]
+vm_name                          = ["himanshuPoC-linux-vm"]
 vm_size                          = "Standard_DS3_v2"
 vm_location                      = "Australia East"
 delete_os_disk_on_termination    = true
@@ -44,8 +44,8 @@ storage_image_reference = {
 
 os_profile = {
   computer_name  = "hostname"
-  admin_username = "mehul"
-  admin_password = "Mehul@123"
+  admin_username = "ubuntu"
+  admin_password = "Himanshu@123"
 }
 
 
