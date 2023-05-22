@@ -53,8 +53,8 @@ checks:
     matchSpec:
       name: resource_group_name
       action: endsWith
-      value: investcorp
-    errorMessage: The required suffix "investcorp" was missing
+      value: himanshuPoC
+    errorMessage: The required suffix "himanshuPoC" was missing
 
   - code: CUS005
     description: Custom check to ensure that suffix applied to All the Virtual Networks
@@ -67,8 +67,8 @@ checks:
     matchSpec:
       name: vnet_name
       action: endsWith
-      value: investcorp
-    errorMessage:  The required suffix "investcorp" was missing
+      value: himanshuPoC
+    errorMessage:  The required suffix "himanshuPoC" was missing
 
   - code: CUS006
     description: Custom check to ensure that Address Space is within our Network
@@ -151,8 +151,8 @@ checks:
     matchSpec:
      name: name
      action: startsWith
-     value: investcorp
-    errorMessage:  The required suffix "investcorp" was missing
+     value: himanshuPoC
+    errorMessage:  The required suffix "himanshuPoC" was missing
 
   - code: CUS012
     description: Custom check to ensure the Virtual Machine's size is Standard_E2s_v3
