@@ -33,11 +33,6 @@ variable "address_space" {
   type        = list(any)
 }
 
-variable "create_ddos_protection_plan" {
-  description = "(Required) Create an ddos plan - Default is false"
-  type        = bool
-}
-
 variable "dns_servers" {
   description = "(Optional) List of IP addresses of DNS servers"
   type        = list(string)
