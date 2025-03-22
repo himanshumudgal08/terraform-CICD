@@ -12,7 +12,6 @@ rg_tags = {
 
 vnet_name                   = "vnet-himanshuPoC"
 address_space               = ["10.0.0.0/16"]
-create_ddos_protection_plan = false
 dns_servers                 = []
 vnet_tags = {
   Name        = "vnet-investcorp-CI",

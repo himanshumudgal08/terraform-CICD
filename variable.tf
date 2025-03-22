@@ -15,12 +15,6 @@ variable "rg_tags" {
   description = "(Optional) Tags for Resource Group"
 }
 
-variable "lock_level_value" {
-  type        = string
-  default     = ""
-  description = "Specifies the Level to be used for this Lock. Possible values are `Empty (no lock)`, `CanNotDelete` and `ReadOnly`"
-}
-
 /*---------------------- Variable for Vnet ---------------------------------------*/
 
 variable "vnet_name" {

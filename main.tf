@@ -1,22 +1,17 @@
 module "resource_group" {
-  source                  = "OT-terraform-azure-modules/resource-group/azure"
-  version                 = "0.0.1"
+  source                  = "./modules/resource_group"
   resource_group_name     = var.resource_group_name
   resource_group_location = var.resource_group_location
-  tag_map                 = var.rg_tags
-  lock_level_value        = var.lock_level_value
+  tags                    = var.rg_tags
 }
 
 module "vnet" {
-  source                      = "OT-terraform-azure-modules/virtual-network/azure"
-  version                     = "0.0.2"
-  vnet_name                   = var.vnet_name
-  resource_group_location     = module.resource_group.resource_group_location
+  source                      = "./modules/virtual_network"
+  virtual_network_name                   = var.vnet_name
+  virtual_network_location     = module.resource_group.resource_group_location
   resource_group_name         = module.resource_group.resource_group_name
-  address_space               = var.address_space
-  tag_map                     = var.vnet_tags
-  // create_ddos_protection_plan = var.create_ddos_protection_plan
-  dns_servers                 = var.dns_servers
+  virtual_network_address_space               = var.address_space
+  tags                    = var.vnet_tags
 }
 
 module "subnet" {
@@ -24,7 +19,7 @@ module "subnet" {
   subnet_address_prefixes = var.subnet_address_prefixes
   subnet_name             = var.subnet_name
   resource_group_name     = module.resource_group.resource_group_name
-  vnet_name               = module.vnet.vnet_name
+  vnet_name               = module.vnet.virtual_network_name
   service_endpoints       = var.subnet_service_endpoints
 }
 
